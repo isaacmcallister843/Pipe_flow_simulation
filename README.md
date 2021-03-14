@@ -45,7 +45,7 @@ sub = Subsystem([pipe_1, pipe_2], Density=998, Vis=.001005)
 ```
 
 Output: 
-```Python
+```
 Flowrate is: 0.083390
 Pressure drop is -4.344941 Pa
 Total System Head Loss -0.000444 m
