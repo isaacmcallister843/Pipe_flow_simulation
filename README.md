@@ -21,7 +21,7 @@ pipe_2 = Pipe(L=8, D=.2*2, Roughness=.00003, Minor_loss=4, Height=-10)
 
 The Subsystem class contains: 
 - Needed variables
--  pipe_list = list of pipes used in the system
+  - pipe_list = list of pipes used in the system
 -- Density = Density
 -- one of:
 --- Vis = Viscosity
