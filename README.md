@@ -37,3 +37,28 @@ The Subsystem class contains:
   - disp = display the results if True
   - minor_loss_pipe = if False will use the minor losses coefficient and their corresponding head to get the minor losses. can also be a number corresponding to the pipe velocity used to find losses (i.e minor_loss_pipe = 2 means the 3rd pipe (3rd in the list) will be used to calculate the minor losses)
   - max_q = maximum flow to guess for iteration
+
+For this example we want to find the flowrate, after providing the system info the Subsytem class automatically calls the method summary() 
+
+```Python
+sub = Subsystem([pipe_1, pipe_2], Density=998, Vis=.001005)
+```
+
+Output: 
+```Python
+Flowrate is: 0.083390
+Pressure drop is -4.344941 Pa
+Total System Head Loss -0.000444 m
+Power needed to overcome head it -0.362325 W
+error is
+0.0004437969282022891
+----------------------------
+Friciton Factor List:
+[0.013270116095496493, 0.015308843387560344]
+Velocity List
+[10.61755353181037, 0.6635970957381482]
+Reynolds List
+[1054360.0422633581, 263590.01056583953]
+Losses List
+[3.8123664789763967, -9.99312801305031]
+```
