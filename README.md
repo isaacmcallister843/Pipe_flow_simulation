@@ -62,3 +62,47 @@ Reynolds List
 Losses List
 [3.8123664789763967, -9.99312801305031]
 ```
+
+The last useful tool is the turbo machinery simulator. Data for the pump/turbine/whatever will given in the form of a equation relating head as a function of flowrate, or a data table containing head and flowrate values. This simulator supports both, in the case of data tables numpy is used to find a quadratic polynomial relating head and flowrate. 
+
+For the pump class: 
+- Needed variables
+  - Subsystem = object of class subsystem. NOTE: The flowrate doesnt need to be correct here will guess regardless
+- One of
+  - flowrate_array and head_array = list containing flowrate and head values to be fitted
+  - ploynomial = array in the form [x^2 coef, x coef, x^0 coef ]
+    - H(Q) = 3 Q^2 + 2Q + 3 = [3,2,3]
+
+- Additional Tools
+  - Terms = number of terms used for poly fit (defaults to 2) 
+  - number_pumps = number of pumps used
+  - char = pump arrangment either
+    - S = Series
+    - P = Parallel
+    - False, default only one pump 
+
+In this example we given the pump curve: 
+
+```Math 
+H(Q) = -1930 Q^2 + 90
+```
+
+Converting the pump equation into a list we then pass the following to the pump class
+```Python
+ploynomial = [-1930, 0, 90]
+pump = pump_system(sub, polynomial=ploynomial)
+
+```
+Object automatically returns a summary 
+
+```
+Using Given Poly
+Iterating to get Flowrate
+----------------------
+Flowrate for the system in m^3 / s
+[-0.17458287  0.172944  ]
+Polynomial Fit is:
+       2
+-1930 x + 90
+```
+In this case our flowrate is 0.172944 m^3 / s
