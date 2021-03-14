@@ -12,7 +12,7 @@ School project that I put too much effort into
 
 The simulation is made up of three classes. 
 
-First the the pipe class, this class holds all the information on the various pipes that makes up the system. Pipe needs inputs of L (length), D (diameter) and Roughness. Optional variables are the minor losses in the pipe, Height (elevation change across the pipe), Pressure_drop (difference in pressure) and D_exit (True of False, if exit velocities are considered.) All units are SI units, pressure is in kPa. As many pipes as needed can be easily added. 
+First the the pipe class, this class holds all the information on the various pipes that makes up the system. Pipe needs inputs of L (length), D (diameter) and Roughness. Optional variables are the minor losses in the pipe, Height (elevation change across the pipe), Pressure_drop (difference in pressure) and D_exit (The exit diameter, if non defualts to False) All units are SI units, pressure is in kPa. As many pipes as needed can be easily added. 
 
 ```Python
 pipe_1 = Pipe(L=5, D=.1, Roughness=.00001, Minor_loss=1.06)
