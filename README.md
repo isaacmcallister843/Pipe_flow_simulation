@@ -65,35 +65,36 @@ Losses List
 
 The last useful tool is the turbo machinery simulator. Data for the pump/turbine/whatever will given in the form of a equation relating head as a function of flowrate, or a data table containing head and flowrate values. This simulator supports both, in the case of data tables numpy is used to find a quadratic polynomial relating head and flowrate. 
 
-For the pump class: 
+For the pump_system class: 
 - Needed variables
   - Subsystem = object of class subsystem. NOTE: The flowrate doesnt need to be correct here will guess regardless
 - One of
   - flowrate_array and head_array = list containing flowrate and head values to be fitted
   - ploynomial = array in the form [x^2 coef, x coef, x^0 coef ]
-    - H(Q) = 3 Q^2 + 2Q + 3 = [3,2,3]
+    - i.e H(Q) = 3 Q^2 + 2Q + 3 = [3,2,3]
 
 - Additional Tools
   - Terms = number of terms used for poly fit (defaults to 2) 
-  - number_pumps = number of pumps used
+  - number_pumps = number of pumps used, defualts to 1
   - char = pump arrangment either
     - S = Series
     - P = Parallel
     - False, default only one pump 
 
-In this example we given the pump curve: 
+In this example we are given the pump curve: 
 
 ```Math 
 H(Q) = -1930 Q^2 + 90
 ```
 
 Converting the pump equation into a list we then pass the following to the pump class
+
 ```Python
 ploynomial = [-1930, 0, 90]
 pump = pump_system(sub, polynomial=ploynomial)
-
 ```
-Object automatically returns a summary 
+
+pump_system automatically returns a summary 
 
 ```
 Using Given Poly
