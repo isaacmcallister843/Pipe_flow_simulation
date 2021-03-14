@@ -290,29 +290,6 @@ class pump_system:
         return 101*10**3 / (self.subsystem.density * 9.81) - self.z_i - \
                self.h_fi - self.p_v / (self.subsystem.density * 9.81)
 
-pipe_1 = Pipe(L=5, D=.1, Roughness=.00001, Minor_loss=1.06)
-pipe_2 = Pipe(L=8, D=.2*2, Roughness=.00003, Minor_loss=4, Height=-10)
-sub = Subsystem([pipe_1, pipe_2], Density=998, Vis=.001005)
-
-# ------------- Questions
-# ------ Test
-pipe_1 = Pipe(L=200, D=.25, Roughness=.0001, Height=100, Minor_loss=.5)
-pipe_2 = Pipe(L=400, D=.33, Roughness=.0001, Minor_loss=1)
-sub = Subsystem([pipe_1, pipe_2], Density=998, Vis=1.001*10**(-3), Target=1)
-
-ploynomial = [-1930, 0, 90]
-pump = pump_system(sub, polynomial=ploynomial)
-
-# get info for the flowrate
-Subsystem([pipe_1, pipe_2], Density=998, Vis=1.001*10**(-3), Flowrate=0.16347582)
-
-# for part b with floware = .11
-Subsystem([pipe_1, pipe_2], Density=998, Vis=1.001*10**(-3), Flowrate=0.11)
-
-
-
-# ----------- Advanced Pump system
-
 
 
 
