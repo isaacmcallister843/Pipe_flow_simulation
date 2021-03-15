@@ -18,7 +18,7 @@ Height and pressure can be considered system qualities, they are included in the
 
 ```Python
 pipe_1 = Pipe(L=5, D=.1, Roughness=.00001, Minor_loss=1.06)
-pipe_2 = Pipe(L=8, D=.2*2, Roughness=.00003, Minor_loss=4, Height=-10)
+pipe_2 = Pipe(L=8, D=.4, Roughness=.00003, Minor_loss=4, Height=-10)
 ```
 
 The Subsystem class contains: 
