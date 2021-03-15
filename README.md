@@ -2,7 +2,7 @@
 Basic pipe flow simulator supporting turbomachinery 
 
 # Motivation 
-School project that I put too much effort into 
+Expanded on a class project 
 
 # Features
 - Flowrate simulations for a variety of pipe systems (or at least the systems found in fluid mechanics textbooks) 
