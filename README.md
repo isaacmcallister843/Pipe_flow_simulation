@@ -25,10 +25,11 @@ The Subsystem class contains:
 - Needed variables
   - pipe_list = list of pipes used in the system
   - Density = the density of the fluid
-  - one of:
-    - Vis = Viscosity
-    - Kin_vis = Kinematic viscosity, will be calculated from viscosity if not provided
-
+  
+- one of:
+  - Vis = Viscosity
+  - Kin_vis = Kinematic viscosity, will be calculated from viscosity if not provide
+  
 - Used to solve questions / answers to questions
   - Velocity Enter = Velocity at entrance. Will be used to get flowrate and other pipe velocities 
   - Target = target head loss, will be used if no flowrate is provided to calculate flowrate (defaults to 0) 
@@ -72,6 +73,7 @@ The last useful tool is the turbo machinery simulator. Data for the pump/turbine
 For the pump_system class: 
 - Needed variables
   - Subsystem = object of class subsystem. NOTE: The flowrate doesnt need to be correct will guess regardless
+  
 - One of
   - flowrate_array and head_array = list containing flowrate and head values to be fitted
   - ploynomial = array in the form [x^2 coef, x coef, x^0 coef ]
