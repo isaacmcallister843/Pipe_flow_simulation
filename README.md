@@ -48,7 +48,7 @@ sub = Subsystem([pipe_1, pipe_2], Density=998, Vis=.001005)
 
 Output: 
 ```
-Flowrate is: 0.083390
+Flowrate is: 0.083390 m^3 / s
 Pressure drop is -4.344941 Pa
 Total System Head Loss -0.000444 m
 Power needed to overcome head it -0.362325 W
