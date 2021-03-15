@@ -86,6 +86,9 @@ For the pump_system class:
     - S = Series
     - P = Parallel
     - False, default only one pump 
+  - For transformations: 
+    - diameter_pump = diameter of the pump (defualts to 1) 
+    - n = rotation rate (defaults to 1) 
 
 In this example we are given the pump curve: 
 
@@ -113,3 +116,11 @@ Polynomial Fit is:
 -1930 x + 90
 ```
 In this case our flowrate is 0.172944 m^3 / s
+
+In some cases it might be useful to model how a geometrically similiar pump would behave. In this case we can specify a diameter and/or a rotation rate in the pump system class and use the method transform to evaluate new diameters and rotation rates. 
+
+```Python
+pump = pump_system(sub, polynomial=ploynomial,diameter_pump=.3, n=1000 )
+pump.transform(diameter_new = .5, n_new = 300) 
+```
+
