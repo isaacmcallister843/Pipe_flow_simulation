@@ -52,11 +52,11 @@ Output:
 Flowrate is: 0.083390 m^3 / s
 Pressure drop is -4.344941 Pa
 Total System Head Loss -0.000444 m
-Power needed to overcome head it -0.362325 W
+Power needed to overcome head is -0.362325 W
 error is
 0.0004437969282022891
 ----------------------------
-Friciton Factor List:
+Friction Factor List:
 [0.013270116095496493, 0.015308843387560344]
 Velocity List
 [10.61755353181037, 0.6635970957381482]
