@@ -68,7 +68,7 @@ Losses List
 
 Note that since no target head was provided the total system head was set to 0. The error term represents the net system head (Target - Head of system) closer to 0 the better. 
 
-The last useful tool is the turbo machinery simulator. Data for the pump/turbine/whatever will given in the form of a equation relating head as a function of flowrate, or a data table containing head and flowrate values. This simulator supports both, in the case of data tables numpy is used to find a quadratic polynomial relating head and flowrate. 
+The last useful tool is the turbo machinery simulator. Data for the pump/turbine/whatever will be given in the form of a equation relating head as a function of flowrate, or a data table containing head and flowrate values. This simulator supports both, in the case of data tables numpy is used to find a quadratic polynomial relating head and flowrate. 
 
 For the pump_system class: 
 - Needed variables
