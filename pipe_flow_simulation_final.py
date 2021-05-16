@@ -1,6 +1,8 @@
 # ---------------------- Libraries and importing
 import math
 import numpy as np
+
+# ---------------------- Units
 meter_per_inch = .0254
 threshold = .05
 
@@ -9,13 +11,24 @@ threshold = .05
 Pipe Class, handles all the features of the pipe 
 """
 
-# Pressue drop is in kpA
+# Pressure drop is in kpA
 # SI units
+
 
 class Pipe:
 
     def __init__(self, L=0, D=0, Roughness=0, Minor_loss=0,
                  Height=0, Other_loss=0, Pressure_drop=0, D_exit=False):
+        """
+        :param L: Length of pipe (m)
+        :param D: Diameter of pipe (m)
+        :param Roughness: Roughness of pipe
+        :param Minor_loss: Coefficent for minor losses (unitless)
+        :param Height: Change in height of the pipe (m)
+        :param Other_loss: Any other losses (m)
+        :param Pressure_drop: Pressure drop across the pipe (kPa)
+        :param D_exit: If tampering a float, if no tampering a bool False
+        """
         self.length = float(L)
         self.diameter = float(D)
         self.roughness = float(Roughness)
@@ -27,14 +40,24 @@ class Pipe:
         self.D_exit = self.get_d_exit(D_exit)
 
     def diameter_inch_m(self):
+        """
+        updates diameter and area to be in metric
+        :return: void
+        """
         self.diameter = meter_per_inch * self.diameter
         self.area = 3.14159*.25*(self.diameter)**2
 
     def get_d_exit(self, D_exit):
+        """
+        :param D_exit: Either a bool or float value. Bool represents no tapering, flaot represents a tapered
+        diameter
+        :return:
+        """
         if D_exit == False:
             return self.diameter
         else:
             return D_exit
+
 
 """
 Sub system Class: Used for multiple pipes
@@ -59,16 +82,29 @@ Sub system Class: Used for multiple pipes
 #                   minor_loss_pipe = 2 means the 3rd pipe (3rd in the list) will be used to calculate the minor losses
 # max_q = maximum flow to guess for iteration
 
+
 class Subsystem:
 
     def __init__(self, pipe_list, Vis=0, Density=0, Target=0, Velocity_enter =False, Kin_vis=False, Flowrate=False, exit=False,
                  minor_loss_pipe=False, disp=True, max_q=.5):
+        """
+        :param pipe_list: List of pipes in system
+        :param Vis: Viscosity of liquid
+        :param Density: Density of liquid
+        :param Target: Target head rise, defaults to 0
+        :param Velocity_enter: Entrance velocity
+        :param Kin_vis: Kinematic viscosity, bool or float
+        :param Flowrate: Flowrate through the pipe
+        :param exit: Consider the exit velocity? bool or float
+        :param minor_loss_pipe: Which pipe is the minor losses relevant too? If False relevant to the pipe provided
+        :param disp: Display the results?
+        :param max_q: Maximum flowrate to consider with iteration
+        """
         self.friction_factors_list = []
         self.velocity_list = []
         self.re_list = []
         self.pipe_lost_list = []
         self.error = 0
-
 
         self.max_q = max_q
         self.velocity_enter = Velocity_enter
@@ -181,7 +217,7 @@ class Subsystem:
         print("error is")
         print(self.error)
         print("----------------------------")
-        print("Friciton Factor List:")
+        print("Friction Factor List:")
         print(self.friction_factors_list)
         print("Velocity List")
         print(self.velocity_list)
@@ -190,6 +226,9 @@ class Subsystem:
         print("Losses List")
         print(self.pipe_lost_list)
 
+"""
+Pump System 
+"""
 # ------------ Needed variables
 # Subsystem = object of class subsystem. NOTE: The flowrate doesnt need to be correct here will guess regardless
 # --- One of
@@ -205,9 +244,25 @@ class Subsystem:
 #           P = Parallel
 # Other values = NPSH Coefficents
 
+
 class pump_system:
     def __init__(self, Subsystem, flowrate_array =[], head_array=[], polynomial=False, Flowrate=False, terms=2,
                  number_pumps=1, Char=False, Z_i=0, H_fi=0 ,P_v=0, diameter_pump=1, n=1):
+        """
+        :param Subsystem: Object of class subsystem
+        :param flowrate_array: Flowrate values if a table is provided
+        :param head_array: Head values if a table is provided
+        :param polynomial: Polynomial to describe flowrate as a function of head
+        :param Flowrate: bool or float, will iterate to get flowrate if false
+        :param terms: Number of terms to use for polynomial fit, defaults to 2
+        :param number_pumps: Number of pumps
+        :param Char: Character describing the pump configuration
+        :param Z_i: NPSH Z value
+        :param H_fi: NPSH H value
+        :param P_v: NPSH pressue value
+        :param diameter_pump: Diameter of the pump, needed if want to-do a pump transform
+        :param n: RPM value for the pump, need if want to-do a pump transform
+        """
         self.subsystem = Subsystem
         self.x_array = flowrate_array
         self.y_array = head_array
@@ -221,13 +276,11 @@ class pump_system:
         self.poly_fit = self.get_poly_fit(polynomial)
         self.flowrate = self.get_flowrate(Flowrate)
 
-
         # NPSH
         self.z_i = Z_i
         self.h_fi = H_fi
         self.p_v = P_v
         self.summary()
-
 
     def get_poly_fit(self, polynomial):
         if polynomial != False:
@@ -278,7 +331,6 @@ class pump_system:
 
         self.summary()
 
-
     def summary(self):
         print("----------------------")
         print("Flowrate for the system in m^3 / s")
@@ -289,20 +341,5 @@ class pump_system:
     def get_NPSH(self):
         return 101*10**3 / (self.subsystem.density * 9.81) - self.z_i - \
                self.h_fi - self.p_v / (self.subsystem.density * 9.81)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
